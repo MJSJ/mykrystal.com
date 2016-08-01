@@ -1,0 +1,13 @@
+*.zip
+*.rar
+*.via
+*.tmp
+*.err
+*.pyd
+*.pyc
+.idea/*
+__pycache__/
+assets/node_modules/
+assets/js/
+assets/scss/
+assets/p/

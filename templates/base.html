@@ -1,0 +1,99 @@
+<html lang="zh-CN">
+<head>
+    <title>YFBLOG</title>
+    <meta charset="utf-8">
+    <meta property="qc:admins" content="4640410277616201676367" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="http://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{{static_url('images/favicon.ico')}}" />
+
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="123131" data-redirecturi="http://baidu.com" charset="utf-8"></script>
+    <script type="text/javascript" src="{{static_url('dist/lib/unslider.min.js')}}"></script>
+    <script type="text/javascript" src="{{static_url('dist/js/base.min.js')}}"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="header-center">
+            <a href="/" id="title-pc" class="home-btn pull-left">YuFeng</a>
+
+            {% if current_user %}
+                <a href="/logout" class="login-btn pull-right fancybox">
+                <i class="glyphicon glyphicon-log-in"></i>退出</a>
+            {% else %}
+                <a href="javascript:;" id="login-btn" class="login-btn pull-right fancybox">
+                <i class="glyphicon glyphicon-log-in"></i>登录</a>
+            {% end %}
+
+            <ul id="menu" data-hl="{{ highlight }}">
+                {% for r in result %}
+                    <li><a name="{{ r['name'] }}" class="menuitem" href="/">{{ r['name'] }}</a></li>
+                {% end %}
+            </ul>
+
+            <a href="/" id="title-mb" class="home-btn-mb pull-left"><i class="glyphicon glyphicon-home"></i></a>
+            <a href="javascript:;" id="login-btn2" class="header-btn pull-right">
+                <i class="glyphicon glyphicon-log-in"></i>
+            </a>
+            <div id="menu-btn" class="header-btn pull-right">
+                <i class="glyphicon glyphicon-align-justify"></i>
+                <ul id="menu-mob" class="menu-mob pull-right">
+                    {% for r in result %}
+                        <li><a href="/">{{ r['name'] }}</a></li>
+                    {% end %}
+                </ul>
+            </div>
+
+            <div class="search">
+                <form action="/search" class="form-horizontal" method="get">
+                    <div class="input-group col-md-12">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-info" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="header-mask"></div>
+    </div>
+    <div class="fake-header"></div>
+
+    {% block body %}{% end %}
+
+    <div class="footer"></div>
+
+<script type="text/html" id="login-page">
+    <div class="col-md-12">
+        <form id="login-from" class="form-horizontal">
+            <h3>登录</h3>
+            <div id="error-username" class="alert alert-danger" style="display: none;"></div>
+            <div id="error-psw" class="alert alert-danger" style="display: none;"></div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" name="username" id="username">
+                    <span id="username-span" class="placeholder">请输入用户名</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input type="password" class="form-control" name="password" id="password">
+                    <span id="password-span" class="placeholder">请输入密码</span>
+                </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-3">
+                 <button type="submit" class="btn btn-info col-sm-12">登录</button>
+              </div>
+            </div>
+        </form>
+        <span id="qqLoginBtn"></span>
+    </div>
+</script>
+</body>
+</html>

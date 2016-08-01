@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=8,IE=EmulateIE8,IE=7,IE=EmulateIE7" />
+    <title>登录</title>
+
+    <link href="{{static_url('dist/css/base.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="http://cdn.bootcss.com/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{static_url('dist/js/base.min.js')}}"></script>
+    <script type="text/javascript" src="{{static_url('dist/js/sys.min.js')}}"></script>
+    <style>
+        .login{
+            margin-top: 200px;
+            border: 1px solid #e3e3e3;
+            background: #e3e3e3;
+            border-radius: 1px;
+        }
+        h3{
+            text-align: center;
+            width: 100%;
+            font-weight: bold;
+        }
+    </style>
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="login col-lg-3 col-lg-offset-4">
+    <form class="form-horizontal" method="post">
+        {% raw xsrf_form_html() %}
+        <h3>登录</h3>
+        {%if info %}
+            <div class="alert alert-danger">{{ info }}</div>
+        {%else%}
+        {%end%}
+        <div class="form-group">
+            <div class="col-sm-12">
+                <input type="text" class="form-control" name="username" id="username">
+                <span id="username-span" class="placeholder">请输入用户名</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <input type="password" class="form-control" name="password" id="password">
+                <span id="password-span" class="placeholder">请输入密码</span>
+            </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12 col-sm-offset-2">
+             <button type="submit" class="btn btn-info col-sm-8">登录</button>
+          </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
