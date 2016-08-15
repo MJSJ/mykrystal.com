@@ -11,8 +11,15 @@ class ObjectHandler(object):
     yf: 编辑专题页
     '''
     def get(self, id=None):
+        import os
         obj = self.db.object(id=id).one()
-        f = open("./templates/s/" + str(id) + "/index.html").read()
+        ph = os.path.dirname(__file__).split("app")[0] + 'templates\\s\\'+str(id)
+        f = ""
+        try:
+            with open(ph + "\\index.html") as d:
+                f = d.read()
+        except IOError as err:
+            l.info("File Error:"+str(err))
         self.render('object.edit.html', hl='edit-object', obj=obj, htmltxt=f)
 
 class ObjectsNewHandler(object):
@@ -32,17 +39,29 @@ class ObjectEditHandler(object):
             if oid: # 添加模板
                 ph = os.path.dirname(__file__).split("app")[0] + 'templates\\s\\'+str(oid)
                 os.makedirs(ph)
-                open("./templates/s/"+str(oid)+"/index.html", "w")
-                self.redirect('/obj')
+                # open("./templates/s/"+str(oid)+"/index.html", "w")
+                try:
+                    with open(ph+"\\index.html", "w") as f:
+                        f.close()
+                except IOError as err:
+                    l.error("File Error:"+str(err))
+            self.redirect('/obj')
             return
         else:
-            import sys
+            import sys, os
             reload(sys)
             sys.setdefaultencoding('utf8')
-            f = open("./templates/s/" + str(dat['id']) + "/index.html", "w+")
-            f.truncate()
-            f.write(dat['html'])
-            f.close()
+
+            ph = os.path.dirname(__file__).split("app")[0] + 'templates\\s\\'+dat['id']
+            try:
+                f = open(ph + "\\index.html", "w+")
+                f.truncate()
+                f.write(dat['html'])
+            except IOError as err:
+                l.error('File Error:'+str(err))
+            finally:
+                if 'f' in locals():
+                    f.close()
             del dat['html']
             self.db.object(id=dat['id']).update(**dat)
             self.redirect('/obj')
