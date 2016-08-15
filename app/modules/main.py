@@ -15,7 +15,7 @@ class MainHandler(main):
         if self.current_user:
             self.render('sys.html', hl='main')
         else:
-            self.redirect('/login')
+            self.redirect('/sys/login')
 
 class LoginHandler(main):
     '''
@@ -23,7 +23,7 @@ class LoginHandler(main):
     '''
     def get(self):
         if self.current_user:
-            self.redirect('/')
+            self.redirect('/sys')
         else:
             self.render('login.html')
 
@@ -32,7 +32,7 @@ class LoginHandler(main):
         u = self.db.user(username=dat['username'], password=dat['password']).one()
         if u:
             self.set_secure_cookie('u', unicode(u.id))
-            self.redirect('/')
+            self.redirect('/sys')
         else:
             self.render('login.html', error='用户名或密码错误')
 
@@ -44,10 +44,10 @@ class NotFoundHandler(main):
     def get(self):
         self.write("Sorry, Page not Found.. Go <a href=\"/\">back</a>")
 
-url_prefix = '/sys'
+url_prefix = ''
 
 urls = [
-    ('/?', MainHandler),
-    ('/login', LoginHandler),
+    ('/sys', MainHandler),
+    ('/sys/login', LoginHandler),
     ('/s/(\d+)/', PagesHandler)
 ]

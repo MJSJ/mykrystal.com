@@ -42,11 +42,11 @@ class CateEditHandler(category):
         dat = self.json_decode(self.request.body)
         if 'id' in dat: # 编辑
             self.db.category(id=dat['id']).update(**dat)
-            self.redirect('/cate')
+            self.redirect('/sys/cate')
             return
         else: # 添加
             cid = self.db.category.add(**dat)
-            self.redirect('/cate')
+            self.redirect('/sys/cate')
             return
 
 url_prefix = '/sys/cate'

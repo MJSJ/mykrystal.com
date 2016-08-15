@@ -46,7 +46,7 @@ class ObjectEditHandler(object):
                         f.close()
                 except IOError as err:
                     l.error("File Error:"+str(err))
-            self.redirect('/obj')
+            self.redirect('/sys/obj')
             return
         else:
             import sys, os
@@ -65,7 +65,7 @@ class ObjectEditHandler(object):
                     f.close()
             del dat['html']
             self.db.object(id=dat['id']).update(**dat)
-            self.redirect('/obj')
+            self.redirect('/sys/obj')
             return
 
 class ObjectsHandler(object):

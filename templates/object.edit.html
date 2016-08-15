@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="content-form col-md-12">
-    <form id="objform" action="/obj/edit" id="addobjForm" method="post">
+    <form id="objform" action="/sys/obj/edit" id="addobjForm" method="post">
         <div class="form-group col-md-6">
             <label for="object-name">专题名称</label>
             {% if obj %}
@@ -76,7 +76,7 @@ $(document).ready(function (){
     $("#sels ul").on("click", "li", function (e) {
         $("#category_id").attr("value", $(this).attr("data-id"));
     });
-    $.majax("GET", "/cate.json", function (data) {
+    $.majax("GET", "/sys/cate.json", function (data) {
         var _results = data.result,
         _btn = $("#sels").find("button"),
         _ul = _btn.next();
