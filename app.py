@@ -80,7 +80,7 @@ class Application(tornado.web.Application):
 
 if __name__ == "__main__":
     # tornado.locale.load_translations(os.path.join(options.run_path, "locale"))
-    tornado.options.parse_config_file(os.path.dirname(__file__)+'app/config.conf')
+    tornado.options.parse_config_file(os.path.dirname(__file__)+'/app/config.conf')
     tornado.options.parse_command_line()
     app = Application()
     if options.debug:
