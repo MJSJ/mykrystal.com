@@ -52,7 +52,7 @@ class Application(tornado.web.Application):
         自动装载各module 的网址
         '''
         handler_list = []
-        files = os.listdir(os.path.dirname(__file__)+'./app/modules/')
+        files = os.listdir(os.path.dirname(__file__)+'/app/modules/')
         files.sort()
         for f in files:
             if f.startswith("_"): # Filter __init__.py
