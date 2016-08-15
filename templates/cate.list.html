@@ -1,0 +1,31 @@
+{% extends "sys.html" %}
+
+{% block content %}
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>名称</th>
+        <th>类型</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for c in cates %}
+    <tr>
+        <th scope="row">{{ c.id }}</th>
+        <td>{{ c.name }}</td>
+        <td>{{ c.is_parent }}</td>
+        <td>
+            <a href="/cate/{{ c.id }}" class="btn btn-primary btn-xs">编辑</a>
+        </td>
+    </tr>
+    {% end %}
+    </tbody>
+</table>
+<script>
+$(document).ready(function(){
+
+});
+</script>
+{% end %}

@@ -1,23 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>System Dashboard</title>
+{% extends "base.html" %}
 
-	<link rel="stylesheet" href="{{static_url('dist/css/sys.css')}}">
-    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href="{{static_url('dist/lib/wangEditor.min.css')}}" type="text/css" rel="stylesheet">
-    <link rel="shortcut icon" href="{{static_url('images/favicon.ico')}}" />
-
-	<script src="http://cdn.bootcss.com/react/0.13.3/react.min.js"></script>
-	<script src="http://cdn.bootcss.com/react-router/0.13.3/ReactRouter.min.js"></script>
-	<script src="http://cdn.bootcss.com/react/0.13.3/JSXTransformer.js"></script>
-</head>
-<body>
-	<script type="text/jsx" src="{{static_url('dist/lib/sys.jsx')}}"></script>
-    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{{static_url('dist/lib/wangEditor.min.js')}}"></script>
-    <script src="{{static_url('dist/js/base.min.js')}}"></script>
-    <script src="{{static_url('dist/js/sys.min.js')}}"></script>
-</body>
-</html>
+{% block sys %}
+    <div class="main clearfix">
+        <div class="menu col-lg-2">
+            <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
+                {% if hl == 'new-object' %}
+                  <li role="presentation" class="active"><a href="/obj/new">新建专题</a></li>
+                {% else %}
+                  <li role="presentation"><a href="/obj/new">新建专题</a></li>
+                {% end %}
+                {% if hl == 'list-object' %}
+                  <li role="presentation" class="active"><a href="/obj">专题列表</a></li>
+                {% else %}
+                  <li role="presentation"><a href="/obj">专题列表</a></li>
+                {% end %}
+                {% if hl == 'list-cate' %}
+                  <li role="presentation" class="active"><a href="/cate">分类管理</a></li>
+                {% else %}
+                  <li role="presentation"><a href="/cate">分类管理</a></li>
+                {% end %}
+                {% if hl == 'edit-cate' %}
+                  <li role="presentation" class="active"><a href="/cate/add">添加分类</a></li>
+                {% else %}
+                  <li role="presentation"><a href="/cate/add">添加分类</a></li>
+                {% end %}
+            </ul>
+        </div>
+        <div class="content col-lg-10">
+            {% block content %}{% end %}
+        </div>
+    </div>
+{% end %}

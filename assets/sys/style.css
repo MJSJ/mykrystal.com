@@ -1,0 +1,22 @@
+.clearfix{overflow:hidden;_zoom:1;}
+
+html, body{
+    min-height: 100%;
+}
+.loginform{
+    width: 25%;
+    margin: 10% auto;
+    min-width: 240px;
+}
+.main{
+    width: 1000px;
+    min-height: 500px;
+    background: #f7f7f9;
+    margin: 100px auto;
+}
+.menu{
+    padding: 0;
+}
+.content-form{
+    padding: 20px;
+}

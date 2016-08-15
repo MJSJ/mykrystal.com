@@ -13,7 +13,7 @@ from tornado.options import options, define
 from app.utils import db
 
 define('mysql_database', default="test")
-define('mysql_host', default="127.0.0.1")
+define('mysql_host', default="localhost")
 define('mysql_user', default="0")
 define('mysql_password', default="0")
 
@@ -22,13 +22,10 @@ define('template_path', default="templates")
 define('static_path', default="assets")
 define('static_url_prefix', default="/assets/")
 define('cookie_secret', default="s")
-define('cookie_domain', default="123.56.243.78")
+define('cookie_domain', default="localhost")
 define('login_url', default="/login")
 define('xsrf_cookies', default=True)
 define('port', default=8080)
-
-define('module_path', default="/zyf/tornado/app/modules")
-define('conf_path', default="/zyf/tornado/app/config.conf")
 
 class Application(tornado.web.Application):
     def __init__(self):
@@ -54,7 +51,7 @@ class Application(tornado.web.Application):
         自动装载各module 的网址
         '''
         handler_list = []
-        files = os.listdir(options.module_path)
+        files = os.listdir('./app/modules')
         files.sort()
         for f in files:
             if f.startswith("_"): # Filter __init__.py
@@ -82,7 +79,7 @@ class Application(tornado.web.Application):
 
 if __name__ == "__main__":
     # tornado.locale.load_translations(os.path.join(options.run_path, "locale"))
-    tornado.options.parse_config_file(options.conf_path)
+    tornado.options.parse_config_file('app/config.conf')
     tornado.options.parse_command_line()
     app = Application()
     if options.debug:

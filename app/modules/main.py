@@ -1,25 +1,44 @@
-#encoding=utf-8
+# encoding: utf-8
 from app.modules import base
+import logging as l
 
 class main(base):
     def render(self, template_name, **kwargs):
-        super(main, self).render('main/' + template_name, **kwargs)
+        super(main, self).render(template_name, **kwargs)
 
 class MainHandler(main):
     '''
     yf: 首页
     '''
     def get(self):
-        users = self.db.user().data
-        self.write({'users':users})
+        self.current_user = self.get_current_user()
+        if self.current_user:
+            self.render('sys.html', hl='main')
+        else:
+            self.redirect('/login')
 
-class ParticularHandler(main):
+class LoginHandler(main):
     '''
-    yf: Particular
+    yf: 登录
     '''
+    def get(self):
+        if self.current_user:
+            self.redirect('/')
+        else:
+            self.render('login.html')
+
+    def post(self):
+        dat = self.json_decode(self.request.body)
+        u = self.db.user(username=dat['username'], password=dat['password']).one()
+        if u:
+            self.set_secure_cookie('u', unicode(u.id))
+            self.redirect('/')
+        else:
+            self.render('login.html', error='用户名或密码错误')
+
+class PagesHandler(main):
     def get(self, id=None):
-        data = self.db.client(id=id).one()
-        self.write({'data': data})
+        self.render('s\\'+id+'\\index.html')
 
 class NotFoundHandler(main):
     def get(self):
@@ -28,6 +47,7 @@ class NotFoundHandler(main):
 url_prefix = ''
 
 urls = [
-    ('/m', MainHandler),
-    ('/particular/(\d+).json', ParticularHandler)
+    ('/', MainHandler),
+    ('/login', LoginHandler),
+    ('/s/(\d+)/', PagesHandler)
 ]

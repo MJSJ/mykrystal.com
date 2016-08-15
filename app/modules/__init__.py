@@ -29,10 +29,11 @@ class base(tornado.web.RequestHandler):
         return self.application.db
 
     def get_current_user(self):
-        user_id = self.get_secure_cookie("u")
-
-    # def write(self, data):
-
+        uid = self.get_secure_cookie("u")
+        u = self.db.user(id=uid).one()
+        if u:
+            return self.get_secure_cookie("u")
+        return None
 
     def write(self, chunk):
         if isinstance(chunk, dict):
@@ -54,6 +55,17 @@ class base(tornado.web.RequestHandler):
 
     def set_default_headers(self):
         self.set_header('Server', 's')
+        # debug CORS
+        self.set_header('Access-Control-Allow-Origin', 'http://10.2.24.236:3000')
+        self.set_header('Access-Control-Allow-Credentials', 'true')
+
+    def json_decode(self, v):
+        r = {}
+        for ite in v.split("&"):
+            vs = ite.split("=")
+            if len(vs) == 2 and tornado.escape.url_unescape(vs[0]) != '_xsrf':
+                r[tornado.escape.url_unescape(vs[0])] = tornado.escape.url_unescape(vs[1])
+        return r
 
     @property
     def now(self):

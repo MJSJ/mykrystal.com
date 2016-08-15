@@ -1,0 +1,32 @@
+{% extends "sys.html" %}
+
+{% block content %}
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>名称</th>
+        <th>父对象</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for o in objs %}
+    <tr>
+        <th scope="row">{{ o.id }}</th>
+        <td>{{ o.name }}</td>
+        <td>{{ o.category_id }}</td>
+        <td>
+            <a href="/obj/{{ o.id }}" target="_blank" class="btn btn-primary btn-xs">编辑</a>
+            <a href="/s/{{ o.id }}/" target="_blank" class="btn btn-primary btn-xs">查看</a>
+        </td>
+    </tr>
+    {% end %}
+    </tbody>
+</table>
+<script>
+$(document).ready(function(){
+
+});
+</script>
+{% end %}
