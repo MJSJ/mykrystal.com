@@ -15,3 +15,4 @@ templates/s/
 app/config.conf
 conf/nginx.conf
 conf/robots.txt
+app.py
