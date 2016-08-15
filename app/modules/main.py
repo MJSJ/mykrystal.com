@@ -38,7 +38,7 @@ class LoginHandler(main):
 
 class PagesHandler(main):
     def get(self, id=None):
-        self.render('s\\'+id+'\\index.html')
+        self.render('s/'+id+'/index.html')
 
 class NotFoundHandler(main):
     def get(self):
