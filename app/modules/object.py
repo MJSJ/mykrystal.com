@@ -37,6 +37,7 @@ class ObjectEditHandler(object):
         if 'id' not in dat: # 添加
             oid = self.db.object.add(**dat)
             if oid: # 添加模板
+                # add html file
                 ph = os.path.dirname(__file__).split("app")[0] + 'templates\\s\\'+str(oid)
                 os.makedirs(ph)
                 # open("./templates/s/"+str(oid)+"/index.html", "w")
@@ -51,7 +52,7 @@ class ObjectEditHandler(object):
             import sys, os
             reload(sys)
             sys.setdefaultencoding('utf8')
-
+            # edit html file
             ph = os.path.dirname(__file__).split("app")[0] + 'templates\\s\\'+dat['id']
             try:
                 f = open(ph + "\\index.html", "w+")
