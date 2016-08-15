@@ -37,6 +37,12 @@ class LoginHandler(main):
             self.render('login.html', error='用户名或密码错误')
 
 class PagesHandler(main):
+    '''
+    yf: 专题页
+    '''
+    def get_current_user(self):
+        pass
+
     def get(self, id=None):
         self.render('s/'+id+'/index.html')
 
