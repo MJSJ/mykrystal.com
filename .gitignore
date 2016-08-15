@@ -12,3 +12,6 @@ assets/js/
 assets/scss/
 assets/p/
 templates/s/
+app/config.conf
+conf/nginx.conf
+conf/robots.txt
