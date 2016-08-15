@@ -49,7 +49,7 @@ class CateEditHandler(category):
             self.redirect('/cate')
             return
 
-url_prefix = '/cate'
+url_prefix = '/sys/cate'
 
 urls = [
     ('/?', CateHandler),

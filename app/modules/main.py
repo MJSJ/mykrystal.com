@@ -44,10 +44,10 @@ class NotFoundHandler(main):
     def get(self):
         self.write("Sorry, Page not Found.. Go <a href=\"/\">back</a>")
 
-url_prefix = ''
+url_prefix = '/sys'
 
 urls = [
-    ('/', MainHandler),
+    ('/?', MainHandler),
     ('/login', LoginHandler),
     ('/s/(\d+)/', PagesHandler)
 ]

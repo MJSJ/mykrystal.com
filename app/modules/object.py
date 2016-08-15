@@ -76,7 +76,7 @@ class ObjectsHandler(object):
         objs = self.db.object().data
         self.render('object.list.html', hl='list-object', objs=objs)
 
-url_prefix = '/obj'
+url_prefix = '/sys/obj'
 
 urls = [
     ('/?', ObjectsHandler),
