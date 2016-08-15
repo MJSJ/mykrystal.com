@@ -13,10 +13,10 @@ class ObjectHandler(object):
     def get(self, id=None):
         import os
         obj = self.db.object(id=id).one()
-        ph = os.path.dirname(__file__).split("app")[0] + 'templates\\s\\'+str(id)
+        ph = os.path.dirname(__file__).split("app")[0] + 'templates/s/'+str(id)
         f = ""
         try:
-            with open(ph + "\\index.html") as d:
+            with open(ph + "/index.html") as d:
                 f = d.read()
         except IOError as err:
             l.info("File Error:"+str(err))
@@ -38,11 +38,11 @@ class ObjectEditHandler(object):
             oid = self.db.object.add(**dat)
             if oid: # 添加模板
                 # add html file
-                ph = os.path.dirname(__file__).split("app")[0] + 'templates\\s\\'+str(oid)
+                ph = os.path.dirname(__file__).split("app")[0] + 'templates/s/'+str(oid)
                 os.makedirs(ph)
                 # open("./templates/s/"+str(oid)+"/index.html", "w")
                 try:
-                    with open(ph+"\\index.html", "w") as f:
+                    with open(ph+"/index.html", "w") as f:
                         f.close()
                 except IOError as err:
                     l.error("File Error:"+str(err))
@@ -53,9 +53,9 @@ class ObjectEditHandler(object):
             reload(sys)
             sys.setdefaultencoding('utf8')
             # edit html file
-            ph = os.path.dirname(__file__).split("app")[0] + 'templates\\s\\'+dat['id']
+            ph = os.path.dirname(__file__).split("app")[0] + 'templates/s/'+dat['id']
             try:
-                f = open(ph + "\\index.html", "w+")
+                f = open(ph + "/index.html", "w+")
                 f.truncate()
                 f.write(dat['html'])
             except IOError as err:
