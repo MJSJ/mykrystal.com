@@ -18,8 +18,6 @@ class CheckHandler(pub):
         a = ''.join(str(i) for i in sorted([_token, self.get_argument('timestamp', 't'), self.get_argument('nonce', 'n')]) )
 
         import hashlib
-        l.info(str(hashlib.sha1(a).hexdigest()))
-        l.info(str(sn))
         if str(hashlib.sha1(a).hexdigest()) == str(sn):
             self.write(es)
         else:
