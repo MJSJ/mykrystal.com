@@ -21,6 +21,19 @@ class CheckHandler(pub):
         else:
             self.write("false")
 
+class AjaxHandler(pub):
+    '''
+    yf: 公众号请求
+    '''
+    def get(self):
+        pass
+
+    def post(self):
+        pass
+
+    def check_xsrf_cookie(self):
+        pass
+
 class NotFoundHandler(pub):
     def get(self):
         self.write("Sorry, Page not Found.. Go <a href=\"/\">back</a>")
@@ -28,5 +41,6 @@ class NotFoundHandler(pub):
 url_prefix = '/pub'
 
 urls = [
-    ('/check?', CheckHandler)
+    ('/check?', CheckHandler),
+    ('/ajax?', AjaxHandler)
 ]
