@@ -29,7 +29,7 @@ class AjaxHandler(pub):
         pass
 
     def post(self):
-        pass
+        l.info(self.json_decode(self.request.body))
 
     def check_xsrf_cookie(self):
         pass
