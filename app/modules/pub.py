@@ -8,10 +8,22 @@ class pub(base):
 
 class CheckHandler(pub):
     '''
-    yf: 首页
+    yf: 认证公众号
     '''
     def get(self):
-        self.write("true")
+        sn = self.get_argument('signature', '')
+        es = self.get_argument('echostr', '')
+        _token = '1q2w3e4r'
+
+        a = ''.join(str(i) for i in sorted([_token, self.get_argument('timestamp', 't'), self.get_argument('nonce', 'n')]) )
+
+        import hashlib
+        l.info(str(hashlib.sha1(a).hexdigest()))
+        l.info(str(sn))
+        if str(hashlib.sha1(a).hexdigest()) == str(sn):
+            self.write(es)
+        else:
+            self.write("false")
 
 class NotFoundHandler(pub):
     def get(self):
