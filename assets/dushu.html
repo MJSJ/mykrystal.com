@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta content="telephone=no,email=no" name="format-detection" />
+	<title>中国15大独立书店好书榜</title>
+	<link rel="stylesheet" href="http://news.sohu.com/upload/yursile/dushue/css/main.css">
+	<link rel="stylesheet" type="text/css" href="http://news.sohu.com/upload/yursile/dushue/lib/animate.min.css">
+
+	<link rel="stylesheet" type="text/css" href="http://news.sohu.com/upload/commonzzx/normal.css">
+	<link rel="stylesheet" type="text/css" href="http://news.sohu.com/upload/yursile/dushue/lib/fullpage/jquery.fullPage.css">
+	<script src="http://news.sohu.com/upload/commonzzx/jquery-2.1.1.min.js"></script>
+	<script src="http://libs.baidu.com/jqueryui/1.8.22/jquery-ui.min.js "></script>
+	<script type="text/javascript" src="http://news.sohu.com/upload/yursile/dushue/lib/fullpage/jquery.fullPage.js"></script>
+	<script src="http://news.sohu.com/upload/commonzzx/preload.js"></script>
+	<script type="text/javascript" src="http://news.sohu.com/upload/yursile/dushue/lib/artTemplate/artTemplate.js"></script>
+
+
+	<style type="text/css">
+	*{padding: 0;margin: 0;}
+	img{border: none;}
+	html,body{height: 100%;}
+
+	.container1{
+		overflow: hidden;
+	}
+	.detail{
+		overflow: hidden!important;
+	}
+	.assist{
+		width: 100%;
+
+	}
+	.intro_d p{
+    margin-top: 4px!important;
+    line-height: 33px!important;
+	}
+	.bg_l{
+		height: 37.042254%!important;
+	}
+	.animate{
+		position: fixed;
+		width: 138px;
+		height: 100px;
+		background: url(http://i0.itc.cn/20151222/3418_cf43ecc0_f8a8_da6d_bdf5_0392029a451e_1.png) no-repeat;
+		background-size: 1000%;
+		z-index: 12;
+		display: none;
+    	-webkit-transform: scale(0.5);
+    	    top: 14%;
+    left: 16%;
+    	-webkit-animation: twinkle 2.16s step-end infinite;
+  		animation: twinkle 2.16s step-end infinite;
+	}
+
+	.twinkle{
+		
+	}
+
+	@-webkit-keyframes twinkle {
+	  0% {
+	    background-position: 0 0;
+	  }
+	  37%{
+	  	background-position: -138px 0;
+	  }
+	  41.666666%{
+		background-position: -276px 0;
+	  }
+
+	  46.2962%{
+		background-position: -414px 0;
+	  }
+
+	  51%{
+		background-position: -552px 0;
+	  }
+
+	  55.55%{
+		background-position: -690px 0;
+	  }
+	  60%{
+		background-position: -828px 0;
+	  }
+
+	  64.555%{
+		background-position: -966px 0;
+	  }
+	  87.9629%{
+		background-position: -1104px 0;
+	  }
+	  93.9814814%{
+		background-position: -142px 0;
+	  }
+		100%{
+			background-position: 0 0;
+		}
+	  
+	}
+	.dushulogo{
+		width: 107px;
+		height: 53px;
+		background: url(http://i1.itc.cn/20151223/3418_574ae647_59f7_d1e7_b5ae_98f5ef3ee2d2_1.jpg) no-repeat;
+		background-size: cover;
+		position: absolute;
+	    right: 30px;
+	    top: 26px;
+	}
+	</style>
+</head>
+
+<body>
+	
+	<div class="loading">
+	    <div class="pace">
+	      <div class="pace-progress">
+	        0
+	      </div>
+	    </div>
+	</div>
+
+
+	<script type="text/javascript" src="http://news.sohu.com/upload/yursile/dushue/lib/pageResponse.js"></script>
+	<script type="text/javascript">
+	  // 自适应屏幕配置
+	  function initView() {
+	     pageResponse({
+	        selectors : '.container',     //模块选择器，使用querySelectorAll的方法
+	        mode : 'contain',     // auto || contain || cover ，默认模式为auto 
+	        width : '640',      //输入页面的宽度，只支持输入数值，默认宽度为320px
+	        height : '1008'      //输入页面的高度，只支持输入数值，默认高度为504px
+	    });
+
+	     pageResponse({
+	        selectors : '.container1',     //模块选择器，使用querySelectorAll的方法
+	        mode : 'contain',     // auto || contain || cover ，默认模式为auto 
+	        width : '640',      //输入页面的宽度，只支持输入数值，默认宽度为320px
+	        height : '1008'      //输入页面的高度，只支持输入数值，默认高度为504px
+	    });
+
+	     pageResponse({
+	        selectors : '.containerBg',     //模块选择器，使用querySelectorAll的方法
+	        mode : 'contain',     // auto || contain || cover ，默认模式为auto 
+	        width : '640',      //输入页面的宽度，只支持输入数值，默认宽度为320px
+	        height : '1008'      //输入页面的高度，只支持输入数值，默认高度为504px
+	    });
+	  }
+
+
+	  //懒加载
+	  var loader = new resLoader({
+	    resources: [
+	       
+		"http://news.sohu.com/upload/yursile/dushue/img/ewm3.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/tvcover.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/caption.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/cover.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/spic1.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/readed.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/sharebg.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/tvbg.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/bg3.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/bg.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/footer2.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/bookbg.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/shareewm.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/section1.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/no-read.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/ewm2.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/again.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/deliver.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/footerbg.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/pics.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/bg2.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/ewm4.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/ewm1.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/backTop.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/footer.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/sectin1_p.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/star1.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/star2.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/star3.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/star4.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/star5.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/star6.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/star7.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/star8.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/star9.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/star10.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/star11.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/star12.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/star13.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/star14.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/star15.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/shop1.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/shop2.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/shop3.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/shop4.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/shop5.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/shop6.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/shop7.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/shop8.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/shop9.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/shop10.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/shop11.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/shop12.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/shop13.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/shop14.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/shop15.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/page1.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/page2.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/page3.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/page4.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/page5.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/page6.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/page7.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/page8.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/page9.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/page10.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/page11.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/page12.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/page13.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/page14.png",
+		"http://news.sohu.com/upload/yursile/dushue/img/page15.png"
+	    ],
+	    onStart: function(total) {},
+	    onProgress: function(current, total) {
+	      var percent = parseInt(current / total * 100) + '%';
+	      $('.pace-progress').text(percent);
+	    },
+	    onComplete: function(total) {
+	      $('.loading').hide();
+	      initView();
+	    }
+	  });
+	  loader.start();
+	  </script>
+
+	
+	<script type="text/javascript">
+		var myFP;
+		$(document).ready(function() {
+			myFP = $('#fullpage').fullpage({
+				// sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE'],
+				anchors: ['page0', 'page1', 'page2','page3', 'page4', 'page5','page6', 'page7', 'page8','page9', 'page10', 'page11','page12', 'page13', 'page14', 'page15', 'page16'],
+				// menu: '#menu',
+				loopTop: true,
+				loopBottom: true,
+				scrollingSpeed:1000,
+				afterLoad:function(anchorLink,index){
+				// console.log(index);
+					// $(".animate").addClass("twinkle");
+					// $(".animate").hide();
+					chageBg(index);
+					if(index != 1){
+						$(".animate").show();
+					}else{
+						$(".animate").hide();
+					}
+
+					if(index ==17){
+						var level = myCounter.getLevel();
+						var result = $(".result");
+						console.log("level: "+ level);
+						result.removeClass("result1 result2 result3 result4");
+						result.addClass("result"+level);
+					}else{
+						$(".bg_l").css("z-index","100");
+					}
+				},
+				onLeave:function(index,nextIndex,direction){
+					// $(".animate").removeClass("twinkle");
+					$(".animate").hide();
+					console.log(index);
+					console.log(direction);
+					nextBG(index,17);
+					if(direction=="down"&&index==16){
+						$(".bg_l").css("z-index","-1");
+					}
+				}
+			});
+
+			$(".bg_shang").on("click",function(){
+				$.fn.fullpage.moveSectionUp();
+			});
+
+			$(".bg_xia").on("click",function(){
+				$.fn.fullpage.moveSectionDown();
+			});
+
+		});
+
+
+		function nextBG(index,size){
+			var bg1s = 15/size*index;
+			var bg2s = 25/size*index;
+			$(".bg1").css("-webkit-transform","translateY(-"+bg1s+"%)");
+			$(".bg2").css("-webkit-transform","translateY(-"+bg2s+"%)");
+			
+		}
+
+		function chageBg(index){
+			$(".bg_l").css("background-image","url(http://news.sohu.com/upload/yursile/dushue/img/page"+index+".png)");
+		}
+	</script>
+
+	<div class="main">
+		<div class="bg1"></div>
+		<div class="bg2"></div>
+		<div class="animate"></div>
+		<!-- <div class="containerBg"> -->
+			<div class="bg_l"></div>
+			<!-- <div class="bg_r"></div> -->
+			<div class="bg_shang"></div>
+			<div class="bg_xia"></div>
+		<!-- </div> -->
+		<div class="bgMusic musicOn"></div>
+		<audio src="http://mfiles.sohu.com/book/atmosphere.mp3" id="musicBg" style="display:none;" autoplay="true" loop='loop'></audio>
+		<div id="fullpage">
+			<div class="section" id="section0">
+				<div class="container">
+					<img src="http://news.sohu.com/upload/yursile/dushue/img/cover.png" data-index="0" alt="">
+					<p class="figcaption">
+						 2015哪些好书让你印象深刻？搜狐读书年终特别推出全国15大独立书店畅销书单，勾选已阅书，小伙伴们一起比拼吧…
+					</p>
+				</div>
+				
+			</div>
+
+			<div class="section" id="section1">
+				<div class="container">
+					<div class="intro">
+						<img src="http://news.sohu.com/upload/yursile/dushue/img/star1.png" data-index="1" alt="">	
+						<div class="intro_d">
+						<h3>彼岸书店</h3>
+							<p>
+								古朴、典雅、安静<br/>
+								为精神提供沉思的空间							</p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="section" id="section2">
+				<div class="container">
+					<div class="intro">
+						<img src="http://news.sohu.com/upload/yursile/dushue/img/star2.png" data-index="2" alt="">
+						<div class="intro_d">
+							<h3>单向空间</h3>
+							<p>
+								京城思想策源地<br/>
+								智性生活方式的创造者							</p>
+						</div>	
+					</div>	
+				</div>
+				
+			</div>
+
+			<div class="section" id="section3">
+				<div class="container">
+					<div class="intro">
+						<img src="http://news.sohu.com/upload/yursile/dushue/img/star3.png" data-index="3" alt="">	
+						<div class="intro_d">
+								<h3>蜜蜂书店</h3>
+							<p>
+								图书与咖啡完美邂逅<br/>
+								我们是一个有灵魂的书店							</p>
+						</div>
+					</div>	
+				</div>
+				
+			</div>
+			<div class="section" id="section4">
+				<div class="container">
+					<div class="intro">
+						<img src="http://news.sohu.com/upload/yursile/dushue/img/star4.png" data-index="4" alt="">	
+						<div class="intro_d">
+								<h3>明阅岛书店</h3>
+							<p>
+								“日、月”意在24小时<br/>
+								岛城博览群书之所							</p>
+						</div>
+					</div>	
+				</div>
+				
+			</div>
+			<div class="section" id="section5">
+				<div class="container">
+					<div class="intro">
+						<img src="http://news.sohu.com/upload/yursile/dushue/img/star5.png" data-index="5" alt="">	
+						<div class="intro_d">
+							<h3>品聚书吧</h3>
+							<p>
+								你我的私享书房<br/>
+								城市的文化客厅							</p>
+						</div>
+					</div>	
+				</div>
+				
+			</div>
+			<div class="section" id="section6">
+				<div class="container">
+					<div class="intro">
+						<img src="http://news.sohu.com/upload/yursile/dushue/img/star6.png" data-index="6" alt="">	
+						<div class="intro_d">
+							<h3>百草园书店</h3>
+							<p>
+								傍千年寺<br/>
+								读万卷书							</p>
+						</div>
+					</div>	
+				</div>
+				
+			</div>
+			<div class="section" id="section7">
+				<div class="container">
+					<div class="intro">
+						<img src="http://news.sohu.com/upload/yursile/dushue/img/star7.png" data-index="7" alt="">
+						<div class="intro_d">
+							<h3>大众书局</h3>
+							<p>
+								让书店更有创意<br/>
+								让阅读更有品味							</p>
+						</div>	
+					</div>	
+				</div>
+				
+			</div>
+			<div class="section" id="section8">
+				<div class="container">
+					<div class="intro">
+						<img src="http://news.sohu.com/upload/yursile/dushue/img/star8.png" data-index="8" alt="">	
+						<div class="intro_d">
+							<h3>先锋书店</h3>
+							<p>
+								大地上的异乡者<br/>
+								独立、开放、自由、人文							</p>
+						</div>
+					</div>	
+				</div>
+				
+			</div>
+			<div class="section" id="section9">
+				<div class="container">
+					<div class="intro">
+						<img src="http://news.sohu.com/upload/yursile/dushue/img/star9.png" data-index="9" alt="">	
+						<div class="intro_d">
+						<h3>半层书店</h3>
+							<p>
+								半层是书店<br/>
+								百态皆生活							</p>
+						</div>
+					</div>	
+				</div>
+				
+			</div>
+			<div class="section" id="section10">
+				<div class="container">
+					<div class="intro">
+						<img src="http://news.sohu.com/upload/yursile/dushue/img/star10.png" data-index="10" alt="">
+						<div class="intro_d">
+								<h3>季风书园</h3>
+							<p>
+								独立的文化立场<br/>
+								自由的思想表达							</p>
+						</div>	
+					</div>	
+				</div>
+				
+			</div>
+			<div class="section" id="section11">
+				<div class="container">
+					<div class="intro">
+						<img src="http://news.sohu.com/upload/yursile/dushue/img/star11.png" data-index="11" alt="">	
+						<div class="intro_d">
+							<h3>言几又书店</h3>
+							<p>
+								生活即文化<br/>
+								文化即生活							</p>
+						</div>
+					</div>	
+				</div>
+				
+			</div>
+			<div class="section" id="section12">
+				<div class="container">
+					<div class="intro">
+						<img src="http://news.sohu.com/upload/yursile/dushue/img/star12.png" data-index="12" alt="">	
+						<div class="intro_d">
+							<h3>晓风书屋</h3>
+							<p>
+								纯粹的书屋<br/>
+								读书人的精神栖息之地							</p>
+						</div>
+					</div>	
+				</div>
+				
+			</div>
+			<div class="section" id="section13">
+				<div class="container">
+					<div class="intro">
+						<img src="http://news.sohu.com/upload/yursile/dushue/img/star13.png" data-index="13" alt="">	
+						<div class="intro_d">
+							<h3>青苑书店</h3>
+							<p>
+								简单、雅致<br/>
+								南昌人的理想书房							</p>
+						</div>
+					</div>	
+				</div>
+				
+			</div>
+			<div class="section" id="section14">
+				<div class="container">
+					<div class="intro">
+						<img src="http://news.sohu.com/upload/yursile/dushue/img/star14.png" data-index="14" alt="">
+						<div class="intro_d">
+							<h3>学而优书店</h3>
+							<p>
+								看书休闲好去处<br/>
+								唯有学，方能优							</p>
+						</div>	
+					</div>	
+				</div>
+				
+			</div>
+			<div class="section" id="section15">
+				<div class="container">
+					<div class="intro">
+						<img src="http://news.sohu.com/upload/yursile/dushue/img/star15.png" data-index="15" alt="">	
+						<div class="intro_d">
+						<h3>1200bookshop</h3>
+							<p>
+								24小时不打烊<br/>
+								为城市点燃一盏深夜的灯							</p>
+						</div>
+					</div>	
+				</div>				
+			</div>
+		
+
+			<div class="section" id="section16">
+				<div class="container">
+					<div class="result result1"></div>
+					
+				</div>
+			</div>
+		</div>
+
+
+		
+
+		<div class="detail">
+			<div class="container1" id="timeLine">
+				<div class="assist" id="assist">
+			
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<script type="text/html" id="detailTPL">
+		<div class="tv">
+			<div class="back"></div>
+			<img src="{{$data.bookPic}}" alt="" class="pic">	
+		</div>
+
+		<div class="contents">
+			<div class="doc">
+				{{each paragraph as pp index}} 
+				<p>
+					{{pp}}
+				</p>
+				{{/each}}
+			</div>
+			<div class="deliver"></div>
+
+			<ul class="books">
+	  			{{each books as item index}} 
+				<li class="book">
+					<div class="book-pic-box">
+						<img src="{{item.img}}"  alt="">
+					</div>
+					
+					<h4 class="book-title">{{item.title}}</h4>
+					<p class="book-doc">{{item.doc}}</p>
+					<div class="isRead"></div>
+				</li>
+				{{/each}}						
+			</ul>
+			<div class="backWraper">
+				<div class="backTop"></div>
+			</div>
+		</div>								
+	
+		
+	</script>
+
+
+	<script type="text/javascript" src="http://news.sohu.com/upload/yursile/dushue/lib/iscroll4.js"></script>
+	<script type="text/javascript" src="http://book.sohu.com/upload/yursile/dushuw/data.min.js"></script>
+	<script type="text/javascript" src="http://news.sohu.com/upload/yursile/dushue/js/main.min.js"></script>
+
+
+
+	<!-- 分享内容 -->
+	<script type="text/javascript">
+		(function(){
+			var  imgUrl= 'http://i3.itc.cn/20151221/3418_900a2854_49d7_df49_bf46_555f24e37329_1.jpg';
+			var href = window.location.href;
+			var link = href.indexOf("#page") >0 ? href.slice(0,href.indexOf("#page")):href;
+			var title='读书攒燃料';
+			var content='15大独立书店告诉你这一年别人都在读啥';
+	        var pengyouquan = "读书攒燃料：15大独立书店告诉你这一年别人在读啥"
+			appid = "";
+			gSound = '';
+			function shareFriend() {
+			    WeixinJSBridge.invoke("sendAppMessage", {
+			        appid: appid,
+			        img_url: imgUrl,
+			        img_width: "200",
+			        img_height: "200",
+			        link: link,
+			        desc: content,
+			        title: title
+			    }, function(b) {})
+			}
+
+			function shareTimeline() {
+			    WeixinJSBridge.invoke("shareTimeline", {
+			        appid: appid,
+			        img_url: imgUrl,
+			        img_width: "200",
+			        img_height: "200",
+			        link: link,
+			        desc: content,
+			        title: pengyouquan
+			    }, function(b) {})
+			}
+
+			function shareWeibo() {
+			    WeixinJSBridge.invoke("shareWeibo", {
+			        content: content,
+			        url: link
+			    }, function(b) {})
+			}
+			document.addEventListener("WeixinJSBridgeReady", function onBridgeReady() {
+			    WeixinJSBridge.on("menu:share:appmessage", function(b) {
+			        shareFriend();
+			    });
+			    WeixinJSBridge.on("menu:share:timeline", function(b) {
+			        shareTimeline();
+			    });
+			    WeixinJSBridge.on("menu:share:weibo", function(b) {
+			        shareWeibo();
+			    })
+			}, false);
+		})()
+		
+	</script>
+</body>
+</html>
+

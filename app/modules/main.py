@@ -46,6 +46,10 @@ class PagesHandler(main):
     def get(self, id=None):
         self.render('s/'+id+'/index.html')
 
+class testingHandler(main):
+    def get(self):
+        self.write("e656fbed187ccbfdc6f972f1b69ab504")
+
 class NotFoundHandler(main):
     def get(self):
         self.write("Sorry, Page not Found.. Go <a href=\"/\">back</a>")
@@ -55,5 +59,6 @@ url_prefix = ''
 urls = [
     ('/sys', MainHandler),
     ('/sys/login', LoginHandler),
-    ('/s/(\d+)/', PagesHandler)
+    ('/s/(\d+)/', PagesHandler),
+    ('/e656fbed187ccbfdc6f972f1b69ab504.txt', testingHandler)
 ]

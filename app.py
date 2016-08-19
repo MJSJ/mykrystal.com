@@ -39,6 +39,7 @@ class Application(tornado.web.Application):
             'login_url': options.login_url,
             'debug': options.debug,
             'xsrf_cookies': options.xsrf_cookies,
+            'compiled_template_cache': False
         }
         super(Application, self).__init__(self.build_urls, **settings)
 
@@ -90,7 +91,7 @@ if __name__ == "__main__":
     else:
         print('run --------------------')
         sockets = tornado.netutil.bind_sockets(options.port)
-        tornado.process.fork_processes(0)
+        # tornado.process.fork_processes(0)
         server = tornado.httpserver.HTTPServer(app, xheaders=True)
         server.add_sockets(sockets)
     tornado.ioloop.IOLoop.current().start()
