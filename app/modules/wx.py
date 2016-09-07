@@ -21,17 +21,15 @@ class CheckHandler(wx):
         if ud:
             pass
         else:
-            l.info(user['openid'])
-            l.info(user['nickname'])
             data = {
                 "openid": user['openid'],
                 "unionid": user['unionid'],
-                "nickname": user['nickname']
-                # "sex": user['sex'],
-                # "province": user['province'],
-                # "city": user['city'],
-                # "country": user['country'],
-                # "headimgurl": user['headimgurl']
+                "nickname": user['nickname'],
+                "sex": user['sex'],
+                "province": user['province'],
+                "city": user['city'],
+                "country": user['country'],
+                "headimgurl": user['headimgurl']
             }
             newu = self.db.client.add(**data)
         if tp == 0:
