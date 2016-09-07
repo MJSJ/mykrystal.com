@@ -9,10 +9,14 @@ class wx(base):
 
 class CheckHandler(wx):
     '''
-    yf: 认证公众号
+    yf: 登录认证: 网站应用
     '''
     def get(self):
-        pass
+        at = self.get_access_token(self.get_argument('code', ''))
+        l.info(self.get_web_user(at))
+    '''
+    yf: 认证公众号
+    '''
     def post(self):
         _token = "sohuweixin"
         sn = self.get_argument('signature', '')

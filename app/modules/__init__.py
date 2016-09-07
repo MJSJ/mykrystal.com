@@ -75,6 +75,35 @@ class base(tornado.web.RequestHandler):
     def timest(self):
         return time.time()
 
+    '''
+    yf: 网站登录认证: 获取access_token
+    '''
+    def get_access_token(self, CODE):
+        url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxba02de7bf9017b73&secret=c60e32b863533c050a5788c5426c84fb&code="
+        +CODE+"&grant_type=authorization_code"
+        req = urllib2.Request(url)
+        res_data = urllib2.urlopen(req)
+        res = res_data.read()
+        json_acceptable_string = res.replace("'", "\"")
+        d = json.loads(json_acceptable_string)
+        return d
+
+    '''
+    yf: 网站登录认证: 获取access_token
+    '''
+    def get_web_user(self, r):
+        url = "https://api.weixin.qq.com/sns/userinfo?access_token="+
+                r["access_token"]+"&openid="+r["openid"]+"&lang=zh_CN"
+        req = urllib2.Request(url)
+        res_data = urllib2.urlopen(req)
+        res = res_data.read()
+        json_acceptable_string = res.replace("'", "\"")
+        d = json.loads(json_acceptable_string)
+        return d
+
+    '''
+    yf: 公众号: 设置并保存token
+    '''
     def check_tocken(self):
         if hasattr(self.application, "_appToken") == False:
             self.setToken(1)
@@ -95,6 +124,9 @@ class base(tornado.web.RequestHandler):
             else:
                 pass
 
+    '''
+    yf: 公众号: 获取token
+    '''
     def setToken(self, tp):
         urlweb = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxba02de7bf9017b73&secret=c60e32b863533c050a5788c5426c84fb"
         urlapp = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx2dbca94de092ab7f&secret=e6d9aa897cbfb02fa06a25e5b69edc9f"
@@ -119,6 +151,9 @@ class base(tornado.web.RequestHandler):
         else:
             pass
 
+    '''
+    yf: 公众号: 根据token获取user
+    '''
     def getU(self):
         url = "https://api.weixin.qq.com/cgi-bin/user/get?access_token=" + self.application._webToken
         l.info(url)
