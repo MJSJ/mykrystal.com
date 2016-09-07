@@ -14,8 +14,8 @@ class CheckHandler(wx):
     def get(self):
         code = self.get_argument('code', '')
         l.info(code)
-        # at = self.get_access_token(code)
-        # l.info(at)
+        at = self.get_access_token(code)
+        l.info(at)
         # l.info(self.get_web_user(at))
     '''
     yf: 认证公众号
