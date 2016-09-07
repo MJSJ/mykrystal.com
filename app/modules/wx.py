@@ -21,6 +21,16 @@ class CheckHandler(wx):
         if ud:
             pass
         else:
+            data = {
+                "openid": user['openid'],
+                "unionid": user['unionid'],
+                "nickname": user['nickname'],
+                "sex": user['sex'],
+                "province": user['province'],
+                "city": user['city'],
+                "country": user['country'],
+                "headimgurl": user['headimgurl']
+            }
             newu = self.db.client.add(**user)
         if tp == 0:
             self.redirect(path)
