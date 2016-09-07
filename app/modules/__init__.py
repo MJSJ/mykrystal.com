@@ -79,7 +79,7 @@ class base(tornado.web.RequestHandler):
     yf: 网站登录认证: 获取access_token
     '''
     def get_access_token(self, c):
-        url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxba02de7bf9017b73&secret=c60e32b863533c050a5788c5426c84fb&code="+c+"&grant_type=authorization_code"
+        url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx2dbca94de092ab7f&secret=e6d9aa897cbfb02fa06a25e5b69edc9f&code="+c+"&grant_type=authorization_code"
         req = urllib2.Request(url)
         res_data = urllib2.urlopen(req)
         res = res_data.read()
