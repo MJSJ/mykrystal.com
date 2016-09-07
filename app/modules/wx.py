@@ -12,9 +12,20 @@ class CheckHandler(wx):
     yf: 登录认证: 网站应用
     '''
     def get(self):
+        path = self.get_argument('path', '')
+        tp = int(self.get_argument('type', -1))
         code = self.get_argument('code', '')
         at = self.get_access_token(code)
-        # l.info(self.get_web_user(at))
+        user = self.get_web_user(at)
+        ud = self.db.client(openid=user['openid'], unionid=user['unionid']).one()
+        if ud:
+            pass
+        else:
+            newu = self.db.client.add(**user)
+        if tp == 0:
+            self.redirect(path)
+        elif tp == 1:
+            self.render(path+'/index.html')
     '''
     yf: 认证公众号
     '''
