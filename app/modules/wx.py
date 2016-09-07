@@ -13,7 +13,8 @@ class CheckHandler(wx):
     '''
     def get(self):
         at = self.get_access_token(self.get_argument('code', ''))
-        l.info(self.get_web_user(at))
+        l.info(at)
+        # l.info(self.get_web_user(at))
     '''
     yf: 认证公众号
     '''
