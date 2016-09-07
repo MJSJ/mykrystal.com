@@ -22,14 +22,14 @@ class CheckHandler(wx):
             pass
         else:
             data = {
-                "openid": user['openid'],
-                "unionid": user['unionid'],
-                "nickname": user['nickname'],
-                "sex": user['sex'],
-                "province": user['province'],
-                "city": user['city'],
-                "country": user['country'],
-                "headimgurl": user['headimgurl']
+                "openid": str(user['openid']),
+                "unionid": str(user['unionid']),
+                "nickname": str(user['nickname']),
+                "sex": str(user['sex']),
+                "province": str(user['province']),
+                "city": str(user['city']),
+                "country": str(user['country']),
+                "headimgurl": str(user['headimgurl'])
             }
             newu = self.db.client.add(**user)
         if tp == 0:
