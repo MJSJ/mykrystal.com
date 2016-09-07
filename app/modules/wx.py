@@ -17,7 +17,7 @@ class CheckHandler(wx):
         code = self.get_argument('code', '')
         at = self.get_access_token(code)
         user = self.get_web_user(at)
-        l.info(json.dump(user))
+        l.info(json.dumps(user))
         # ud = self.db.client(openid=user['openid'], unionid=user['unionid']).one()
         # if ud:
         #     pass
