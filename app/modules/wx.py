@@ -1,7 +1,7 @@
 # encoding: utf-8
 from app.modules import base
 import logging as l
-import hashlib
+import hashlib, json
 
 class wx(base):
     def render(self, template_name, **kwargs):
@@ -17,25 +17,26 @@ class CheckHandler(wx):
         code = self.get_argument('code', '')
         at = self.get_access_token(code)
         user = self.get_web_user(at)
-        ud = self.db.client(openid=user['openid'], unionid=user['unionid']).one()
-        if ud:
-            pass
-        else:
-            data = {
-                "openid": str(user['openid']),
-                "unionid": str(user['unionid']),
-                "nickname": str(user['nickname']),
-                "sex": str(user['sex']),
-                "province": str(user['province']),
-                "city": str(user['city']),
-                "country": str(user['country']),
-                "headimgurl": str(user['headimgurl'])
-            }
-            newu = self.db.client.add(**user)
-        if tp == 0:
-            self.redirect(path)
-        elif tp == 1:
-            self.render(path+'/index.html')
+        l.info(json.dump(user))
+        # ud = self.db.client(openid=user['openid'], unionid=user['unionid']).one()
+        # if ud:
+        #     pass
+        # else:
+        #     data = {
+        #         "openid": str(user['openid']),
+        #         "unionid": str(user['unionid']),
+        #         "nickname": str(user['nickname']),
+        #         "sex": str(user['sex']),
+        #         "province": str(user['province']),
+        #         "city": str(user['city']),
+        #         "country": str(user['country']),
+        #         "headimgurl": str(user['headimgurl'])
+        #     }
+        #     newu = self.db.client.add(**user)
+        # if tp == 0:
+        #     self.redirect(path)
+        # elif tp == 1:
+        #     self.render(path+'/index.html')
     '''
     yf: 认证公众号
     '''
