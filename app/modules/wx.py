@@ -17,22 +17,23 @@ class CheckHandler(wx):
         code = self.get_argument('code', '')
         at = self.get_access_token(code)
         user = self.get_web_user(at)
-        l.info(json.dumps(user))
         ud = self.db.client(openid=user['openid'], unionid=user['unionid']).one()
         if ud:
             pass
         else:
-            # data = {
-            #     "openid": str(user['openid']),
-            #     "unionid": str(user['unionid']),
-            #     "nickname": str(user['nickname']),
-            #     "sex": str(user['sex']),
-            #     "province": str(user['province']),
-            #     "city": str(user['city']),
-            #     "country": str(user['country']),
-            #     "headimgurl": str(user['headimgurl'])
-            # }
-            newu = self.db.client.add(**json.dumps(user))
+            l.info(user['openid'])
+            l.info(user['nickname'])
+            data = {
+                "openid": user['openid'],
+                "unionid": user['unionid'],
+                "nickname": user['nickname']
+                # "sex": user['sex'],
+                # "province": user['province'],
+                # "city": user['city'],
+                # "country": user['country'],
+                # "headimgurl": user['headimgurl']
+            }
+            newu = self.db.client.add(**data)
         if tp == 0:
             self.redirect(path)
         elif tp == 1:
