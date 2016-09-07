@@ -22,16 +22,16 @@ class CheckHandler(wx):
         if ud:
             pass
         else:
-            data = {
-                "openid": str(user['openid']),
-                "unionid": str(user['unionid']),
-                "nickname": str(user['nickname']),
-                "sex": str(user['sex']),
-                "province": str(user['province']),
-                "city": str(user['city']),
-                "country": str(user['country']),
-                "headimgurl": str(user['headimgurl'])
-            }
+            # data = {
+            #     "openid": str(user['openid']),
+            #     "unionid": str(user['unionid']),
+            #     "nickname": str(user['nickname']),
+            #     "sex": str(user['sex']),
+            #     "province": str(user['province']),
+            #     "city": str(user['city']),
+            #     "country": str(user['country']),
+            #     "headimgurl": str(user['headimgurl'])
+            # }
             newu = self.db.client.add(**json.dumps(user))
         if tp == 0:
             self.redirect(path)
