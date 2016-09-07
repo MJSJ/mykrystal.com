@@ -12,11 +12,9 @@ class CheckHandler(wx):
     yf: 登录认证: 网站应用
     '''
     def get(self):
-        l.info(self.request.headers)
-        l.info(self.json_decode(self.request.body))
-        # code = self.get_argument('code', '')
-        # at = self.get_access_token(code)
-        # l.info(self.get_web_user(at))
+        code = self.get_argument('code', '')
+        at = self.get_access_token(code)
+        l.info(self.get_web_user(at))
     '''
     yf: 认证公众号
     '''

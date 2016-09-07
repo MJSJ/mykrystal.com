@@ -79,31 +79,31 @@ class base(tornado.web.RequestHandler):
     yf: 网站登录认证: 获取access_token
     '''
     def get_access_token(self, c):
-        if hasattr(self.application, "access_token") == False:
-            url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx2dbca94de092ab7f&secret=e6d9aa897cbfb02fa06a25e5b69edc9f&code="+c+"&grant_type=authorization_code"
-            req = urllib2.Request(url)
-            res_data = urllib2.urlopen(req)
-            res = res_data.read()
-            json_acceptable_string = res.replace("'", "\"")
-            d = json.loads(json_acceptable_string)
-            self.application.access_token = d["access_token"]
-            self.application.refresh_token = d["refresh_token"]
-            self.application.access_exp = self.timest()
-            return d
-        else:
-            if self.timest() - self.application.access_exp > 7200: # 过期了
-                url = "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=wx2dbca94de092ab7f&grant_type=refresh_token&refresh_token="+self.application.refresh_token
-                req = urllib2.Request(url)
-                res_data = urllib2.urlopen(req)
-                res = res_data.read()
-                json_acceptable_string = res.replace("'", "\"")
-                d = json.loads(json_acceptable_string)
-                self.application.access_token = d["access_token"]
-                self.application.refresh_token = d["refresh_token"]
-                self.application.access_exp = self.timest()
-                return d
-            else: # 没有过期
-                pass
+        # if hasattr(self.application, "access_token") == False:
+        url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx2dbca94de092ab7f&secret=e6d9aa897cbfb02fa06a25e5b69edc9f&code="+c+"&grant_type=authorization_code"
+        req = urllib2.Request(url)
+        res_data = urllib2.urlopen(req)
+        res = res_data.read()
+        json_acceptable_string = res.replace("'", "\"")
+        d = json.loads(json_acceptable_string)
+        self.application.access_token = d["access_token"]
+        self.application.refresh_token = d["refresh_token"]
+        self.application.access_exp = self.timest()
+        return d
+        # else:
+        #     if self.timest() - self.application.access_exp > 7200: # 过期了
+        #         url = "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=wx2dbca94de092ab7f&grant_type=refresh_token&refresh_token="+self.application.refresh_token
+        #         req = urllib2.Request(url)
+        #         res_data = urllib2.urlopen(req)
+        #         res = res_data.read()
+        #         json_acceptable_string = res.replace("'", "\"")
+        #         d = json.loads(json_acceptable_string)
+        #         self.application.access_token = d["access_token"]
+        #         self.application.refresh_token = d["refresh_token"]
+        #         self.application.access_exp = self.timest()
+        #         return d
+        #     else: # 没有过期
+        #         pass
 
     '''
     yf: 网站登录认证: 获取access_token
