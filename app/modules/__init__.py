@@ -86,9 +86,13 @@ class base(tornado.web.RequestHandler):
         res = res_data.read()
         json_acceptable_string = res.replace("'", "\"")
         d = json.loads(json_acceptable_string)
-        self.application.access_token = d["access_token"]
-        self.application.refresh_token = d["refresh_token"]
-        self.application.access_exp = self.timest()
+        l.info(d)
+        req = urllib2.Request(url)
+        res_data = urllib2.urlopen(req)
+        res = res_data.read()
+        json_acceptable_string = res.replace("'", "\"")
+        d = json.loads(json_acceptable_string)
+        l.info(d)
         return d
         # else:
         #     if self.timest() - self.application.access_exp > 7200: # 过期了
