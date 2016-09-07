@@ -7,11 +7,12 @@
     Copyright (c) 2013 yufeng All rights reserved.
 """
 import tornado.web
-import tornado.web, hmac, hashlib, datetime, json #, functools, urllib, os
+import tornado.web, hmac, hashlib, datetime, json, time #, functools, urllib, os
 from tornado.escape import json_decode
 from tornado import escape
 import decimal
 import logging as l
+import urllib, urllib2, json, hashlib
 
 def _default(obj):
     if isinstance(obj, datetime.datetime):
@@ -70,3 +71,60 @@ class base(tornado.web.RequestHandler):
     @property
     def now(self):
         return datetime.datetime.now()
+
+    def timest(self):
+        return time.time()
+
+    def check_tocken(self):
+        if hasattr(self.application, "_appToken") == False:
+            self.setToken(1)
+            self.application._apptokenEx = self.timest()
+        else:
+            if self.timest() - self.application._apptokenEx > 7200:
+                self.setToken(1)
+                self.application._apptokenEx = self.timest()
+            else:
+                pass
+        if hasattr(self.application, "_webToken") == False:
+            self.setToken(2)
+            self.application._webtokenEx = self.timest()
+        else:
+            if self.timest() - self.application._webtokenEx > 7200:
+                self.setToken(2)
+                self.application._webtokenEx = self.timest()
+            else:
+                pass
+
+    def setToken(self, tp):
+        urlweb = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx872cc0c563eaff04&secret=009600ff4d8cce915f071b1ac202c22f"
+        urlapp = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx2dbca94de092ab7f&secret=e6d9aa897cbfb02fa06a25e5b69edc9f"
+        if tp == 1:
+            url = urlapp
+        elif tp == 2:
+            url = urlweb
+        else:
+            url = ""
+        req = urllib2.Request(url)
+        res_data = urllib2.urlopen(req)
+        res = res_data.read()
+        json_acceptable_string = res.replace("'", "\"")
+        d = json.loads(json_acceptable_string)
+        if d["access_token"] is not None:
+            if tp == 1:
+                self.application._appToken = d["access_token"]
+            elif tp == 2:
+                self.application._webToken = d["access_token"]
+            else:
+                pass
+        else:
+            pass
+
+    def getU(self):
+        url = "https://api.weixin.qq.com/cgi-bin/user/get?access_token=" + self.application._appToken
+        l.info(url)
+        req = urllib2.Request(url)
+        res_data = urllib2.urlopen(req)
+        res = res_data.read()
+        json_acceptable_string = res.replace("'", "\"")
+        d = json.loads(json_acceptable_string)
+        return d
