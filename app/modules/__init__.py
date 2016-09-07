@@ -96,7 +96,7 @@ class base(tornado.web.RequestHandler):
                 pass
 
     def setToken(self, tp):
-        urlweb = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx872cc0c563eaff04&secret=009600ff4d8cce915f071b1ac202c22f"
+        urlweb = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxba02de7bf9017b73&secret=c60e32b863533c050a5788c5426c84fb"
         urlapp = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx2dbca94de092ab7f&secret=e6d9aa897cbfb02fa06a25e5b69edc9f"
         if tp == 1:
             url = urlapp
@@ -120,7 +120,7 @@ class base(tornado.web.RequestHandler):
             pass
 
     def getU(self):
-        url = "https://api.weixin.qq.com/cgi-bin/user/get?access_token=" + self.application._appToken
+        url = "https://api.weixin.qq.com/cgi-bin/user/get?access_token=" + self.application._webToken
         l.info(url)
         req = urllib2.Request(url)
         res_data = urllib2.urlopen(req)
