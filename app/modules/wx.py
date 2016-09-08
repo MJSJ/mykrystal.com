@@ -9,33 +9,38 @@ class wx(base):
 
 class CheckHandler(wx):
     '''
-    yf: 登录认证: 网站应用
+    yf: 网页授权获取用户基本信息
     '''
     def get(self):
+        u = self.get_secure_cookie("u", None)
         path = self.get_argument('path', '')
-        tp = int(self.get_argument('type', -1))
-        code = self.get_argument('code', '')
-        at = self.get_access_token(code)
-        user = self.get_web_user(at)
-        ud = self.db.client(openid=user['openid'], unionid=user['unionid']).one()
-        if ud:
-            pass
-        else:
-            data = {
-                "openid": user['openid'],
-                "unionid": user['unionid'],
-                "nickname": user['nickname'],
-                "sex": user['sex'],
-                "province": user['province'],
-                "city": user['city'],
-                "country": user['country'],
-                "headimgurl": user['headimgurl']
-            }
-            newu = self.db.client.add(**data)
-        if tp == 0:
-            self.redirect(path)
-        elif tp == 1:
-            self.render(path+'/index.html')
+        if u is None: # 2天内未在此设备上认证 或 重新登录了微信客户端
+            code = self.get_argument('code', '')
+            access_token = self.get_access_token(code)
+            user = self.get_web_user(access_token)
+            ud = self.db.client(openid=user['openid'], unionid=user['unionid']).one()
+            if ud:
+                self.set_secure_cookie("u", str(ud.id), expires_days=2)
+                pass
+            else:
+                data = {
+                    "openid": user['openid'],
+                    "unionid": user['unionid'],
+                    "nickname": user['nickname'],
+                    "sex": user['sex'],
+                    "province": user['province'],
+                    "city": user['city'],
+                    "country": user['country'],
+                    "headimgurl": user['headimgurl']
+                }
+                newu = self.db.client.add(**data)
+                if newu:
+                    self.set_secure_cookie("u", str(newu), expires_days=2)
+                else:
+                    self.write("Error!")
+        self.redirect(path)
+        return
+
     '''
     yf: 认证公众号
     '''
