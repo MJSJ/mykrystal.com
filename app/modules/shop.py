@@ -17,7 +17,5 @@ class NotFoundHandler(shop):
 url_prefix = '/shop'
 
 urls = [
-    ('?', ShopHandler),
-    ('/1', AjaxHandler),
-    ('/2', WebHandler)
+    ('?', ShopHandler)
 ]
