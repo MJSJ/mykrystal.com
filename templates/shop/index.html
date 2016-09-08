@@ -5,8 +5,16 @@
 	<title>SHOP</title>
 </head>
 <body>
-	<h1>
-		{{ users }}
-	</h1>
+	{% for u in users %}
+		<p>
+			{{u.nickname}}|{{u.score}}分|
+			{% if u.sex == 1 %}
+				男
+			{% else %}
+				女
+			{% end %} | 
+			{{u.province}}
+		</p>
+	{% end %}
 </body>
 </html>
