@@ -1,4 +1,6 @@
 # encoding: utf-8
+from app.modules import base
+
 class shop(base):
     def render(self, template_name, **kwargs):
         super(shop, self).render("shop/" + template_name, **kwargs)
