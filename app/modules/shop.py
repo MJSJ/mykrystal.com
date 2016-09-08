@@ -7,8 +7,12 @@ class shop(base):
 
 class ShopHandler(shop):
 	def get(self):
-		users = self.db.client().data
-		self.render('index.html', users=users)
+		if self.get_secure_cookie('u', None) is not None:
+			users = self.db.client().data
+			self.render('index.html', users=users)
+		else:
+			self.redirect('/')
+		return
 
 class NotFoundHandler(shop):
     def get(self):
