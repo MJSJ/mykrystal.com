@@ -5,7 +5,7 @@ class shop(base):
     def render(self, template_name, **kwargs):
         super(shop, self).render("shop/" + template_name, **kwargs)
 
-class ShopHandler(shop)
+class ShopHandler(shop):
 	def get(self):
 		users = self.db.client().data
 		self.render('index.html', users=users)
