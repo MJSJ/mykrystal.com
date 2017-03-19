@@ -38,7 +38,7 @@ class ObjectEditHandler(object):
     def post(self):
         import os
         dat = self.json_decode(self.request.body)
-        dat['user_id'] = self.current_user.id
+        dat['user_id'] = self.current_user['id']
         if 'id' not in dat: # 添加
             oid = self.db.object.add(**dat)
             if oid: # 添加模板
