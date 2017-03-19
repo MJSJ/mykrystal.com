@@ -91,8 +91,16 @@ class ObjectsHandler(object):
     yf: 专题
     '''
     def get(self):
-        objs = self.db.object().data
-        self.render('object.list.html', hl='list-object', objs=objs)
+        u = self.current_user
+        if int(u['role']) < 20:
+            objs = self.db.object(user_id=u['id']).data
+        else:
+            objs = self.db.object().data
+        for o in objs:
+            cu = self.db.user(id=o['user_id']).one()
+            o['username'] = cu.username
+        users = self.db.user(is_del=0).data
+        self.render('object.list.html', hl='list-object', objs=objs, users=users)
 
 class ObjectBackHandler(object):
     '''
@@ -123,6 +131,12 @@ class ObjectBackHandler(object):
             l.error('File Error:'+str(err))
         self.redirect('/sys/obj/' + str(dat['object_id']))
 
+class ObjectSetUserHandler(object):
+    def post(self):
+        dat = self.json_decode(self.request.body)
+        self.db.object(id=dat['oid']).update(user_id=dat['user_id'])
+        self.write({'status': True})
+
 class NotFoundHandler(object):
     def get(self):
         self.write("Sorry, Page not Found.. Go <a href='/sys'>back</a>")
@@ -134,5 +148,6 @@ urls = [
     ('/(\d+)', ObjectHandler),
     ('/new', ObjectsNewHandler),
     ('/edit', ObjectEditHandler),
-    ('/back', ObjectBackHandler)
+    ('/back', ObjectBackHandler),
+    ('/setUser', ObjectSetUserHandler)
 ]

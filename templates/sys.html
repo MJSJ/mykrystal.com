@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block sys %}
+    <div class="header clearfix">
+        <a href="/sys/signout" role="button" class="btn btn-small btn-primary pull-right margin-left-20">退出</a>
+        <span class="btn btn-small pull-right">{{ u['name'] }}</span>
+    </div>
     <div class="main clearfix">
         <div class="menu col-lg-2">
             <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">

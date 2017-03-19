@@ -23,3 +23,7 @@ html, body{
 .margin-left-20{
     margin-left: 20px;
 }
+.header{
+    width: 1000px;
+    margin: 0 auto;
+}

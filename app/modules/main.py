@@ -36,6 +36,17 @@ class LoginHandler(main):
         else:
             self.render('login.html', error='用户名或密码错误')
 
+class SignoutHandler(main):
+    '''
+    yf: 退出登录
+    '''
+    def render(self, template_name, **kwargs):
+        super(main, self).render(template_name, **kwargs)
+
+    def get(self):
+        self.set_secure_cookie('u', '')
+        self.redirect('/sys/login')
+
 class PagesHandler(main):
     '''
     yf: old专题
@@ -55,5 +66,6 @@ url_prefix = ''
 urls = [
     ('/sys', MainHandler),
     ('/s/(\d+)/', PagesHandler),
-    ('/sys/login', LoginHandler)
+    ('/sys/login', LoginHandler),
+    ('/sys/signout', SignoutHandler)
 ]
