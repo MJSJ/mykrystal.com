@@ -33,7 +33,7 @@ class base(tornado.web.RequestHandler):
         uid = self.get_secure_cookie("u")
         u = self.db.user(id=uid).one()
         if u:
-            return self.get_secure_cookie("u")
+            return { 'id': unicode(u.id), "role": unicode(u.role), "name": unicode(u.username) }
         return None
 
     def write(self, chunk):

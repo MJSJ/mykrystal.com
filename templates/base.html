@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>MJSJ CMS</title>
-
     <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
     <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap-glyphicons/1.0/css/bootstrap-glyphicons.css">
     <link rel="stylesheet" href="{{ static_url("sys/style.css") }}">
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="{{ static_url("sys/base.js") }}"></script>
 </head>
 <body>
 {% block login %}  {% end %}
 {% block sys %}  {% end %}
+<script src="{{ static_url("sys/base.js") }}"></script>
 </body>
 </html>

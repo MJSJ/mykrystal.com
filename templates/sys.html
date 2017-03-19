@@ -4,25 +4,27 @@
     <div class="main clearfix">
         <div class="menu col-lg-2">
             <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-                {% if hl == 'new-object' %}
-                  <li role="presentation" class="active"><a href="/sys/obj/new">新建专题</a></li>
-                {% else %}
-                  <li role="presentation"><a href="/sys/obj/new">新建专题</a></li>
-                {% end %}
                 {% if hl == 'list-object' %}
                   <li role="presentation" class="active"><a href="/sys/obj">专题列表</a></li>
                 {% else %}
                   <li role="presentation"><a href="/sys/obj">专题列表</a></li>
                 {% end %}
-                {% if hl == 'list-cate' %}
-                  <li role="presentation" class="active"><a href="/sys/cate">分类管理</a></li>
-                {% else %}
-                  <li role="presentation"><a href="/sys/cate">分类管理</a></li>
-                {% end %}
-                {% if hl == 'edit-cate' %}
-                  <li role="presentation" class="active"><a href="/sys/cate/add">添加分类</a></li>
-                {% else %}
-                  <li role="presentation"><a href="/sys/cate/add">添加分类</a></li>
+                {% if int(u['role']) > 10 %}
+                    {% if hl == 'new-object' %}
+                    <li role="presentation" class="active"><a href="/sys/obj/new">新建专题</a></li>
+                    {% else %}
+                    <li role="presentation"><a href="/sys/obj/new">新建专题</a></li>
+                    {% end %}
+                    {% if hl == 'list-user' %}
+                    <li role="presentation" class="active"><a href="/sys/user">用户列表</a></li>
+                    {% else %}
+                    <li role="presentation"><a href="/sys/user">用户列表</a></li>
+                    {% end %}
+                    {% if hl == 'new-user' %}
+                    <li role="presentation" class="active"><a href="/sys/user/new">新建用户</a></li>
+                    {% else %}
+                    <li role="presentation"><a href="/sys/user/new">新建用户</a></li>
+                    {% end %}
                 {% end %}
             </ul>
         </div>

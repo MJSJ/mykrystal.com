@@ -1,0 +1,61 @@
+{% extends "sys.html" %}
+
+{% block content %}
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>用户名</th>
+        <th>权限</th>
+        <th>状态</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+    <tr>
+        <th scope="row">{{ user.id }}</th>
+        <td>{{ user.username }}</td>
+        <td>
+            {% if int(user.role) == 10 %}
+                <button class="btn btn-xs btn-primary">普通用户</button>
+            {% elif int(user.role) == 20 %}
+                <button class="btn btn-xs btn-primary">管理员</button>
+            {% else %}
+            {% end %}
+        </td>
+        <td>
+            {% if int(user.is_del) == 0 %}
+                <button target="_blank" class="btn btn-success btn-xs">使用中</button>
+            {% else %}
+                <button target="_blank" class="btn btn-error btn-xs">已删除</button>
+            {% end %}
+        </td>
+        <td>
+            <a href="/sys/user/{{ user.id }}" target="_blank" class="btn btn-primary btn-xs margin-left-20">编辑</a>
+            {% if int(user.is_del) == 0 %}
+            <form action="/sys/user/del" method="post" class="pull-left">
+                <button target="_blank" class="btn btn-warning btn-xs">删除</button>
+                <input type="hidden" name="id" value="{{ user.id }}">
+                <input type="hidden" name="is_del" value="1">
+                {% raw xsrf_form_html() %}
+            </form>
+            {% else %}
+            <form action="/sys/user/del" method="post" class="pull-left">
+                <button target="_blank" class="btn btn-warning btn-xs">恢复</button>
+                <input type="hidden" name="id" value="{{ user.id }}">
+                <input type="hidden" name="is_del" value="0">
+                {% raw xsrf_form_html() %}
+            </form>
+            {% end %}
+        </td>
+    </tr>
+    {% end %}
+    </tbody>
+</table>
+<script>
+$(document).ready(function(){
+
+});
+</script>
+{% end %}

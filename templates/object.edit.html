@@ -2,6 +2,24 @@
 
 {% block content %}
 <div class="content-form col-md-12">
+    {% if obj %}
+    <!-- 回溯列表 -->
+    <div class="form-group col-md-12">
+        {% for ob in objb %}
+            <div class="alert alert-info" role="alert">
+                修改时间: {{ ob.last_modify_time }}
+                <form action="/sys/obj/back" method="post" class="pull-right">
+                    <button type="submit" class="btn btn-warning btn-xs pull-right margin-left-20">回溯</button>
+                    <input type="hidden" class="form-control" name="object_id" value="{{obj.id}}">
+                    <input type="hidden" class="form-control" name="id" value="{{ob.id}}">
+                    {% raw xsrf_form_html() %}
+                </form>
+                <a href="/assets/s/{{obj.id}}/index_{{ ob.id }}.html" target="_blank" class="btn btn-primary btn-xs pull-right margin-left-20">查看</a>
+            </div>
+        {% end %}
+    </div>
+    <!-- 回溯列表 end -->
+    {% end %}
     <form id="objform" action="/sys/obj/edit" id="addobjForm" method="post">
         <div class="form-group col-md-6">
             <label for="object-name">专题名称</label>
@@ -19,18 +37,6 @@
                 <input type="text" class="form-control" name="des" required>
             {% end %}
         </div>
-        <div class="form-group col-md-6">
-            <label for="object-des">父对象</label>
-            <div class="btn-group" id="sels">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                <ul class="dropdown-menu"></ul>
-            </div>
-            {% if obj %}
-                <input id="category_id" type="hidden" class="form-control" name="category_id" required value="{{ obj.category_id }}">
-            {% else %}
-                <input id="category_id" type="hidden" class="form-control" name="category_id" required>
-            {% end %}
-        </div>
         {% if obj %}
             <!-- code editor -->
             <div class="form-group col-md-12">
@@ -42,7 +48,7 @@
             <input id="oid" name="id" type="hidden" class="form-control" value="{{ obj.id }}">
         {% end %}
         <div class="form-group col-md-12">
-            <button type="submit" class="btn btn-default">提交</button>
+            <button type="submit" class="btn btn-info">提交</button>
         </div>
         <link rel="stylesheet" href="{{ static_url('sys/codemirror.css') }}">
         <link rel="stylesheet" href="{{ static_url('sys/monokai.css') }}">
@@ -75,30 +81,6 @@
 $(document).ready(function (){
     $("#sels ul").on("click", "li", function (e) {
         $("#category_id").attr("value", $(this).attr("data-id"));
-    });
-    $.majax("GET", "/sys/cate.json", function (data) {
-        var _results = data.result,
-        _btn = $("#sels").find("button"),
-        _ul = _btn.next();
-        if( _results.length > 0 ){
-            var _cid = $("#category_id").attr("value");
-            if( _cid != undefined ){
-                for (var j in _results){
-                    if( parseInt(_results[j].id) == parseInt(_cid) ){
-                        _btn.html(_results[0].name + '<span class="caret"></span>');
-                    }
-                }
-            }
-            else{
-                _btn.html(_results[0].name + '<span class="caret"></span>');
-                $("#category_id").attr("value", _results[0].id);
-            }
-            var _ulhtml = '';
-            for (var i in _results){
-                _ulhtml += '<li data-id="'+_results[i].id+'"><a href="javascript:;">'+_results[i].name+'</a></li>';
-            }
-            _ul.html(_ulhtml);
-        }
     });
 });
 </script>

@@ -1,0 +1,64 @@
+{% extends "sys.html" %}
+
+{% block content %}
+<div class="content-form col-md-12">
+    <form action="/sys/user/edit" method="post">
+        <div class="form-group col-md-6">
+            <label for="object-name">用户名</label>
+            {% if user %}
+                <input type="text" class="form-control" name="username" required value="{{ user.username }}">
+            {% else %}
+                <input type="text" class="form-control" name="username" required>
+            {% end %}
+        </div>
+        <div class="form-group col-md-6">
+            <label for="object-des">密码</label>
+            {% if user %}
+                <input type="password" class="form-control" name="password" required value="{{ user.password }}">
+            {% else %}
+                <input type="password" class="form-control" name="password" required>
+            {% end %}
+        </div>
+        <div class="form-group col-md-6">
+            <label for="object-des">权限</label>
+            {% if user %}
+                {% if int(user.role) == 10 %}
+                <label class="radio-inline">
+                    <input type="radio" name="role" checked value="10"> 普通用户
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="role" id="role" value="20"> 管理员
+                </label>
+                {% elif int(user.role) == 20 %}
+                <label class="radio-inline">
+                    <input type="radio" name="role" value="10"> 普通用户
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="role" id="role" checked value="20"> 管理员
+                </label>
+                {% else %}
+                {% end %}
+            {% else %}
+                <label class="radio-inline">
+                    <input type="radio" name="role" value="10" required> 普通用户
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="role" value="20" required> 管理员
+                </label>
+            {% end %}
+        </div>
+        {% if user %}
+            <input name="id" type="hidden" class="form-control" value="{{ user.id }}">
+        {% end %}
+        <div class="form-group col-md-12">
+            <button type="submit" class="btn btn-info">提交</button>
+        </div>
+        {% raw xsrf_form_html() %}
+    </form>
+</div>
+<script>
+$(document).ready(function (){
+
+});
+</script>
+{% end %}
