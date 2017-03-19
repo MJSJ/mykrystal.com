@@ -21,7 +21,7 @@
                     <button id="user-val" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ o.username }}<span class="caret"></span>
                     </button>
-                    <ul id="user-select" class="dropdown-menu" data-oid="{{o.id}}">
+                    <ul class="user-select dropdown-menu" data-oid="{{o.id}}">
                         {% for us in users %}
                             <li data-uid="{{us.id}}"><a href="#">{{us.username}}</a></li>
                         {% end %}
@@ -42,7 +42,7 @@
 {% raw xsrf_form_html() %}
 <script>
 $(document).ready(function(){
-    $("#user-select li").on('click', function(e){
+    $(".user-select li").on('click', function(e){
         var _this = $(this);
         $.ajax({
             url: '/sys/obj/setUser',
@@ -50,7 +50,7 @@ $(document).ready(function(){
             data: { "oid": _this.parent().attr("data-oid"), "user_id": _this.attr("data-uid"), "_xsrf": $("input[name=_xsrf]").val() },
             success: function(r){
                 if(r.status){
-                    $("#user-val").html(_this.text() + '<span class="caret"></span>');
+                    _this.parent().prev().html(_this.text() + '<span class="caret"></span>');
                 }
             }
         });
