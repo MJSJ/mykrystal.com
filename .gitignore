@@ -5,12 +5,14 @@
 *.err
 *.pyd
 *.pyc
+.vscode/*
 .idea/*
 __pycache__/
 assets/node_modules/
 assets/js/
 assets/scss/
 assets/p/
+assets/s/
 templates/s/
 app/config.conf
 conf/nginx.conf
