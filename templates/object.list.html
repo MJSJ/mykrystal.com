@@ -33,7 +33,7 @@
         </td>
         <td>
             <a href="/sys/obj/{{ o.id }}" target="_blank" class="btn btn-primary btn-xs">编辑</a>
-            <a href="{{ static_url('s/'+{{ o.id }}+'/index.html') }}" target="_blank" class="btn btn-primary btn-xs margin-left-20">查看</a>
+            <a href="{{ static_url("s/"{{ o.id }}"/index.html") }}" target="_blank" class="btn btn-primary btn-xs margin-left-20">查看</a>
         </td>
     </tr>
     {% end %}
