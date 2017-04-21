@@ -99,6 +99,7 @@ class ObjectsHandler(object):
         for o in objs:
             cu = self.db.user(id=o['user_id']).one()
             o['username'] = cu.username
+            o['href'] = self.static_show('../assets/s/' + str(o.id) + '/index.html')
         users = self.db.user(is_del=0).data
         self.render('object.list.html', hl='list-object', objs=objs, users=users)
 

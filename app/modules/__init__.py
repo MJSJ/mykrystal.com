@@ -67,6 +67,9 @@ class base(tornado.web.RequestHandler):
             if len(vs) == 2 and tornado.escape.url_unescape(vs[0]) != '_xsrf':
                 r[tornado.escape.url_unescape(vs[0])] = tornado.escape.url_unescape(vs[1])
         return r
+    
+    def static_show(self, h):
+        return h + '?v=' + str( int(time.time()) )
 
     @property
     def now(self):
