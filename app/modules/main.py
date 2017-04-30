@@ -73,7 +73,7 @@ url_prefix = ''
 urls = [
     ('/sys', MainHandler),
     ('/s/(\d+)/', PagesHandler),
-    ('/papa/', PapaHandler),
+    ('/sys/papa/', PapaHandler),
     ('/sys/login', LoginHandler),
     ('/sys/signout', SignoutHandler)
 ]
