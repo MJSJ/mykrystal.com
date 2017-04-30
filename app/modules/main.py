@@ -57,6 +57,13 @@ class PagesHandler(main):
     def get(self, id=None):
         self.render('s/'+id+'/index.html')
 
+class PapaHandler(main):
+    def render(self, template_name, **kwargs):
+        super(main, self).render(template_name, **kwargs)
+
+    def get(self):
+        self.render('papa/index.html')
+
 class NotFoundHandler(main):
     def get(self):
         self.write("Sorry, Page not Found.. Go <a href='/sys'>back</a>")
@@ -66,6 +73,7 @@ url_prefix = ''
 urls = [
     ('/sys', MainHandler),
     ('/s/(\d+)/', PagesHandler),
+    ('/papa/', PapaHandler),
     ('/sys/login', LoginHandler),
     ('/sys/signout', SignoutHandler)
 ]
