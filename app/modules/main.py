@@ -62,7 +62,7 @@ class PapaHandler(main):
         super(main, self).render(template_name, **kwargs)
 
     def get(self):
-        self.render('papa/index.html')
+        self.render('papapa/index.html')
 
 class NotFoundHandler(main):
     def get(self):
