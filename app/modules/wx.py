@@ -78,6 +78,10 @@ class WebHandler(wx):
         l.info(self.request.headers)
         l.info(self.json_decode(self.request.body))
 
+class AuthHandler(wx):
+    def get(self):
+        self.render('MP_verify_pSL9WSM4NdcT7Mi5.txt')
+
 class NotFoundHandler(wx):
     def get(self):
         self.write("Sorry, Page not Found.. Go <a href=\"/\">back</a>")
@@ -87,5 +91,6 @@ url_prefix = '/wx'
 urls = [
     ('?', CheckHandler),
     ('/ajax?', AjaxHandler),
-    ('/web', WebHandler)
+    ('/web', WebHandler),
+    ('/auth', AuthHandler)
 ]
