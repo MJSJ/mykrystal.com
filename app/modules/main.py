@@ -64,13 +64,6 @@ class PapaHandler(main):
     def get(self):
         self.render('papapa/index.html')
 
-class AuthHandler(main):
-    def render(self, template_name, **kwargs):
-        super(main, self).render(template_name, **kwargs)
-
-    def get(self):
-        self.render('MP_verify_pSL9WSM4NdcT7Mi5.txt')
-
 class NotFoundHandler(main):
     def get(self):
         self.write("Sorry, Page not Found.. Go <a href='/sys'>back</a>")
@@ -78,7 +71,6 @@ class NotFoundHandler(main):
 url_prefix = ''
 
 urls = [
-    ('/MP_verify_pSL9WSM4NdcT7Mi5.txt', AuthHandler),
     ('/sys', MainHandler),
     ('/s/(\d+)/', PagesHandler),
     ('/sys/papa3/', PapaHandler),
