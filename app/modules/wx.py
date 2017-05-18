@@ -39,7 +39,7 @@ class CheckHandler(wx):
                     self.set_secure_cookie("c", str(newu), expires_days=2)
                 else:
                     self.write("Error!")
-        self.redirect(path)
+        self.render('act/index.html')
         return
 
     '''
@@ -89,8 +89,8 @@ class NotFoundHandler(wx):
 url_prefix = '/wx'
 
 urls = [
-    ('?', CheckHandler),
     ('/ajax?', AjaxHandler),
     ('/web', WebHandler),
-    ('/auth/MP_verify_pSL9WSM4NdcT7Mi5.txt', AuthHandler)
+    ('/auth/MP_verify_pSL9WSM4NdcT7Mi5.txt', AuthHandler),
+    ('/auth/activity', CheckHandler)
 ]
