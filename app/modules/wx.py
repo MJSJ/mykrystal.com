@@ -92,5 +92,5 @@ urls = [
     ('?', CheckHandler),
     ('/ajax?', AjaxHandler),
     ('/web', WebHandler),
-    ('/auth', AuthHandler)
+    ('/auth/MP_verify_pSL9WSM4NdcT7Mi5.txt', AuthHandler)
 ]
