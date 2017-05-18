@@ -78,7 +78,7 @@ class NotFoundHandler(main):
 url_prefix = ''
 
 urls = [
-    ('/?', AuthHandler),
+    ('/MP_verify_pSL9WSM4NdcT7Mi5.txt', AuthHandler),
     ('/sys', MainHandler),
     ('/s/(\d+)/', PagesHandler),
     ('/sys/papa3/', PapaHandler),
