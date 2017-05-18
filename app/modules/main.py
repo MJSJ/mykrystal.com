@@ -65,6 +65,8 @@ class PapaHandler(main):
         self.render('papapa/index.html')
 
 class AuthHandler(main):
+    def render(self, template_name, **kwargs):
+        super(main, self).render(template_name, **kwargs)
     def get(self):
         self.render('MP_verify_pSL9WSM4NdcT7Mi5.txt')
 
