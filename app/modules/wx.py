@@ -41,8 +41,7 @@ class CheckHandler(wx):
                 newu = self.db.client.add(**data)
                 if newu:
                     self.set_secure_cookie("c", str(newu), expires_days=2)
-                    data['id'] = newu
-                    authUser = data
+                    authUser = self.db.client(id=newu).one()
                 else:
                     self.write("Error!")
         else:
