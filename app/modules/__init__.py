@@ -83,7 +83,7 @@ class base(tornado.web.RequestHandler):
     '''
     def get_access_token(self, c):
         # if hasattr(self.application, "access_token") == False:
-        url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxc4d3992d5b38db97&secret=a0baa3714f005714d96f10d4b80314e4&code="+c+"&grant_type=authorization_code"
+        url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxc4d3992d5b38db97&secret=a64c71252df6a6611e893c2ba53adf35&code="+c+"&grant_type=authorization_code"
         l.info(url)
         req = urllib2.Request(url)
         res_data = urllib2.urlopen(req)
@@ -145,8 +145,8 @@ class base(tornado.web.RequestHandler):
     yf: 公众号: 获取token
     '''
     def setToken(self, tp):
-        urlweb = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxc4d3992d5b38db97&secret=a0baa3714f005714d96f10d4b80314e4"
-        urlapp = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxc4d3992d5b38db97&secret=a0baa3714f005714d96f10d4b80314e4"
+        urlweb = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxc4d3992d5b38db97&secret=a64c71252df6a6611e893c2ba53adf35"
+        urlapp = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxc4d3992d5b38db97&secret=a64c71252df6a6611e893c2ba53adf35"
         if tp == 1:
             url = urlapp
         elif tp == 2:
