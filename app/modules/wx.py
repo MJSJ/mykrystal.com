@@ -80,7 +80,7 @@ class WebHandler(wx):
 
 class AuthHandler(wx):
     def get(self):
-        self.render('MP_verify_pSL9WSM4NdcT7Mi5.txt')
+        self.render('MP_verify_oai1jPbiuXyaD710.txt')
 
 class NotFoundHandler(wx):
     def get(self):
@@ -91,6 +91,6 @@ url_prefix = '/wx'
 urls = [
     ('/ajax?', AjaxHandler),
     ('/web', WebHandler),
-    ('/auth/MP_verify_pSL9WSM4NdcT7Mi5.txt', AuthHandler),
+    ('/auth/MP_verify_oai1jPbiuXyaD710.txt', AuthHandler),
     ('/auth/activity', CheckHandler)
 ]
