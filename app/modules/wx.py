@@ -28,7 +28,6 @@ class CheckHandler(wx):
             else:
                 data = {
                     "openid": user['openid'],
-                    "unionid": user['unionid'],
                     "nickname": user['nickname'],
                     "sex": user['sex'],
                     "province": user['province'],
