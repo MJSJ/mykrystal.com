@@ -22,6 +22,7 @@ class CheckHandler(wx):
             if 'unionid' in user:
                 ud = self.db.client(openid=user['openid'], unionid=user['unionid']).one()
             else:
+                l.info(user['openid'])
                 ud = self.db.client(openid=user['openid']).one()
             if ud:
                 self.set_secure_cookie("c", str(ud.id), expires_days=2)
@@ -45,6 +46,8 @@ class CheckHandler(wx):
                     authUser = newu
                 else:
                     self.write("Error!")
+        else:
+            authUser = self.db.client(id=c).one()
         self.render('act/index.html', authUser=authUser)
         return
 
