@@ -18,6 +18,7 @@ class CheckHandler(wx):
             code = self.get_argument('code', '')
             access_token = self.get_access_token(code)
             user = self.get_web_user(access_token)
+            l.info(user)
             ud = self.db.client(openid=user['openid'], unionid=user['unionid']).one()
             if ud:
                 self.set_secure_cookie("c", str(ud.id), expires_days=2)
