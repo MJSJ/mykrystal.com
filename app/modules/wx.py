@@ -14,6 +14,7 @@ class CheckHandler(wx):
     def get(self):
         c = self.get_secure_cookie("c", None)
         path = self.get_argument('state', '')
+        authUser = None
         if c is None: # 2天内未在此设备上认证 或 重新登录了微信客户端
             code = self.get_argument('code', '')
             access_token = self.get_access_token(code)
@@ -24,6 +25,7 @@ class CheckHandler(wx):
                 ud = self.db.client(openid=user['openid']).one()
             if ud:
                 self.set_secure_cookie("c", str(ud.id), expires_days=2)
+                authUser = ud
                 pass
             else:
                 data = {
@@ -40,12 +42,9 @@ class CheckHandler(wx):
                 newu = self.db.client.add(**data)
                 if newu:
                     self.set_secure_cookie("c", str(newu), expires_days=2)
+                    authUser = newu
                 else:
                     self.write("Error!")
-        authUser = None
-        authC = self.get_secure_cookie("c", None)
-        if authC is not None:
-            authUser = self.db.client(id=authC).one()
         self.render('act/index.html', authUser=authUser)
         return
 
