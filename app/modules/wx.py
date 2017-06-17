@@ -17,7 +17,6 @@ class CheckHandler(wx):
         if c is None: # 2天内未在此设备上认证 或 重新登录了微信客户端
             code = self.get_argument('code', '')
             access_token = self.get_access_token(code)
-            l.info(access_token)
             user = self.get_web_user(access_token)
             ud = self.db.client(openid=user['openid'], unionid=user['unionid']).one()
             if ud:
