@@ -42,7 +42,7 @@ class CheckHandler(wx):
                     self.set_secure_cookie("c", str(newu), expires_days=2)
                 else:
                     self.write("Error!")
-        self.render('act/index.html')
+        self.render('act/index.html', authUser=self.get_secure_cookie("c", None))
         return
 
     '''
