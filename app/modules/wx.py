@@ -22,12 +22,10 @@ class CheckHandler(wx):
             if 'unionid' in user:
                 ud = self.db.client(openid=user['openid'], unionid=user['unionid']).one()
             else:
-                l.info(user['openid'])
                 ud = self.db.client(openid=user['openid']).one()
             if ud:
                 self.set_secure_cookie("c", str(ud.id), expires_days=2)
                 authUser = ud
-                pass
             else:
                 data = {
                     "openid": user['openid'],
