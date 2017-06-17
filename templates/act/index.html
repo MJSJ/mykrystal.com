@@ -7,7 +7,11 @@
     <title>WX登录授权</title>
 </head>
 <body>
-    <img src="{{authUser.headimgurl}}" alt="">
-    <h1>{{authUser.nickname}}</h1>
+     {% if authUser %}
+        <img src="{{authUser.headimgurl}}" alt="">
+        <h1>{{authUser.nickname}}</h1>
+    {% else %}
+        <h1>授权失败!</h1>
+    {% end %}
 </body>
 </html>
